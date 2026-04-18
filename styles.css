@@ -77,8 +77,7 @@ body {
   height: 3.25rem;
   flex-shrink: 0;
   border-radius: var(--radius-md);
-  background: var(--accent);
-  color: #ffffff;
+  background: transparent;
   box-shadow: var(--shadow);
 }
 

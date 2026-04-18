@@ -6,6 +6,7 @@ const CORE_ASSETS = [
   `${BASE_PATH}styles.css`,
   `${BASE_PATH}app.js`,
   `${BASE_PATH}favicon.svg`,
+  `${BASE_PATH}SFBBO_Logo_Rounded.png`,
   `${BASE_PATH}site.webmanifest`,
   `${BASE_PATH}data/programs.js`
 ];
