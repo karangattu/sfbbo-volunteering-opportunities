@@ -28,8 +28,9 @@ jobs:
 
       - name: Prepare static site
         run: |
-          mkdir -p dist/data
-          cp index.html styles.css app.js service-worker.js site.webmanifest favicon.svg SFBBO_Logo_Rounded.png dist/
+          mkdir -p dist/data dist/assets
+          cp *.html styles.css app.js program-page.js program-data.js service-worker.js site.webmanifest dist/
+          cp -r assets/* dist/assets/
           cp data/programs.js dist/data/
           touch dist/.nojekyll
 
