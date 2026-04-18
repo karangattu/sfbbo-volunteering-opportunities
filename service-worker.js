@@ -1,4 +1,4 @@
-const CACHE_NAME = "sfbbo-volunteer-explorer-v2";
+const CACHE_NAME = "sfbbo-volunteer-explorer-v5";
 const BASE_PATH = self.location.pathname.replace(/service-worker\.js$/, "");
 const CORE_ASSETS = [
   BASE_PATH,
@@ -8,7 +8,15 @@ const CORE_ASSETS = [
   `${BASE_PATH}favicon.svg`,
   `${BASE_PATH}SFBBO_Logo_Rounded.png`,
   `${BASE_PATH}site.webmanifest`,
-  `${BASE_PATH}data/programs.js`
+  `${BASE_PATH}assets/AVIAN_DISEASE_PREVENTION_PROGRAM.png`,
+  `${BASE_PATH}assets/BIRD_BANDING.png`,
+  `${BASE_PATH}assets/CALIFORNIA_GULL_NEST_SURVEYS.png`,
+  `${BASE_PATH}assets/COLONIAL_WATERBIRD_NEST_MONITORING.png`,
+  `${BASE_PATH}assets/HABITAT_RESTORATION.png`,
+  `${BASE_PATH}assets/LEAST_TERN_MONITORING.png`,
+  `${BASE_PATH}assets/OUTREACH.png`,
+  `${BASE_PATH}assets/PHALAROPE_SURVEYS.png`,
+  `${BASE_PATH}assets/SNOWY_PLOVER.png`
 ];
 
 self.addEventListener("install", (event) => {

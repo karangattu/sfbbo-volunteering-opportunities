@@ -6,7 +6,7 @@
     <title>SFBBO Volunteer Opportunities</title>
     <meta
       name="description"
-      content="Browse San Francisco Bay Bird Observatory volunteer programs by month and experience level."
+      content="A simple logo-first catalog of SFBBO volunteering opportunities."
     />
     <meta name="theme-color" content="#1f5c50" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
@@ -14,104 +14,22 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="page-shell">
-      <header class="hero">
-        <div class="brand-row">
-          <div class="brand-mark" aria-hidden="true">
-            <img src="SFBBO_Logo_Rounded.png" alt="" class="brand-mark-image" />
-          </div>
-          <div>
-            <p class="eyebrow">San Francisco Bay Bird Observatory</p>
-            <h1>Volunteer opportunities by month.</h1>
-          </div>
+    <main class="page-shell">
+      <section class="hero">
+        <img class="hero-logo" src="SFBBO_Logo_Rounded.png" alt="San Francisco Bay Bird Observatory logo" />
+        <h1>Volunteer opportunities</h1>
+      </section>
+
+      <section class="catalog-section" aria-labelledby="catalog-heading">
+        <div class="section-heading">
+          <p class="eyebrow">Available opportunities</p>
+          <h2 id="catalog-heading">All opportunities in one clean view</h2>
         </div>
+        <div class="opportunity-grid" id="opportunity-grid" aria-live="polite"></div>
+      </section>
 
-        <p class="hero-text">
-          Browse recurring programs, filter by experience level, and open any listing for a quick summary and seasonal timing.
-        </p>
+    </main>
 
-        <div class="hero-actions">
-          <a class="button button-primary" href="#explorer">Browse programs</a>
-        </div>
-
-        <ul class="hero-stats" id="hero-stats"></ul>
-      </header>
-
-      <main>
-        <section class="explorer-section" id="explorer">
-          <div class="section-heading">
-            <p class="eyebrow">Find a fit</p>
-            <h2>Simple, public-facing guide</h2>
-            <p>
-              Filter the list, choose a program, and see where it fits in the year.
-            </p>
-          </div>
-
-          <div class="controls-panel">
-            <div class="control-group">
-              <span class="control-label">
-                <span class="label-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M8 2v4" />
-                    <path d="M16 2v4" />
-                    <rect x="3" y="5" width="18" height="16" rx="3" />
-                    <path d="M3 10h18" />
-                  </svg>
-                </span>
-                Month
-              </span>
-              <div class="pill-group" id="month-filter" aria-label="Filter by month"></div>
-            </div>
-            <div class="control-group">
-              <span class="control-label">
-                <span class="label-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2" />
-                    <circle cx="9.5" cy="7" r="4" />
-                    <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                  </svg>
-                </span>
-                Experience level
-              </span>
-              <div
-                class="pill-group"
-                id="experience-filter"
-                aria-label="Filter by experience level"
-              ></div>
-            </div>
-          </div>
-
-          <div class="explorer-layout">
-            <section class="results-panel" aria-labelledby="results-heading">
-              <div class="results-header">
-                <div>
-                  <p class="eyebrow">Programs</p>
-                  <h3 id="results-heading">Available listings</h3>
-                </div>
-                <p class="results-summary" id="results-summary"></p>
-              </div>
-              <div class="program-list" id="program-list"></div>
-            </section>
-
-            <aside class="detail-panel" aria-labelledby="detail-heading">
-              <div class="program-detail" id="program-detail"></div>
-            </aside>
-          </div>
-        </section>
-      </main>
-
-      <footer class="page-footer">
-        <p>
-          <span class="footer-icon" aria-hidden="true">
-            <img src="SFBBO_Logo_Rounded.png" alt="" class="footer-logo" />
-          </span>
-          Public volunteer guide, cached for offline use after the first visit.
-        </p>
-      </footer>
-    </div>
-
-    <script src="data/programs.js"></script>
     <script src="app.js"></script>
   </body>
 </html>

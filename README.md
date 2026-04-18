@@ -1,22 +1,22 @@
 # sfbbo-volunteering-opportunities
 
-A minimal static site for browsing recurring SFBBO volunteer programs by month and experience level.
+A simple static site that shows the SFBBO logo and a clean catalog of volunteering opportunities from the images in `assets/`.
 
 ## What it does
 
-- Keeps the public view focused on the essentials: the program list, filters, and a single detail panel.
-- Works as a plain static site, so it is easy to publish on GitHub Pages.
-- Registers a service worker so the core app shell is available offline after the first successful visit.
+- Shows the SFBBO logo up top.
+- Displays each volunteering opportunity as a simple card with its logo and a short summary.
+- Stays static and offline-friendly for GitHub Pages.
 
 ## Files
 
 - `index.html`: main app entry point.
 - `styles.css`: minimal layout and visual styling.
-- `app.js`: client-side filtering, rendering, and service worker registration.
-- `service-worker.js`: offline cache for the app shell.
+- `app.js`: renders the opportunity cards.
+- `service-worker.js`: offline cache for the app shell and logo assets.
 - `site.webmanifest`: metadata for installable/offline-friendly browsers.
 - `favicon.svg`: site icon.
-- `data/programs.js`: volunteer program seed data.
+- `assets/`: opportunity logos used in the catalog.
 
 ## Run locally
 
@@ -40,6 +40,5 @@ To use it:
 
 ## Offline behavior
 
-- The first successful visit caches the core files.
+- The first successful visit caches the app shell and logo assets.
 - Later visits can continue to load the app even without a network connection.
-- Offline support applies to the app shell and bundled dataset, not to external services or future dynamic content.

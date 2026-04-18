@@ -1,385 +1,91 @@
 (function () {
-  const MONTHS = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
+  const OPPORTUNITIES = [
+    {
+      name: "Colonial Waterbird Nest Monitoring",
+      logo: "assets/COLONIAL_WATERBIRD_NEST_MONITORING.png",
+      level: "Beginner",
+      summary: "Support repeated nest checks and colony observations for local waterbirds."
+    },
+    {
+      name: "Bird Banding",
+      logo: "assets/BIRD_BANDING.png",
+      level: "Intermediate",
+      summary: "Assist with banding operations and the careful handling of field data."
+    },
+    {
+      name: "Outreach",
+      logo: "assets/OUTREACH.png",
+      level: "Beginner",
+      summary: "Represent SFBBO at events, answer questions, and connect people to the mission."
+    },
+    {
+      name: "Habitat Restoration",
+      logo: "assets/HABITAT_RESTORATION.png",
+      level: "Beginner",
+      summary: "Join hands-on restoration work that improves habitat for birds and shoreline wildlife."
+    },
+    {
+      name: "Least Tern Monitoring",
+      logo: "assets/LEAST_TERN_MONITORING.png",
+      level: "Beginner",
+      summary: "Help document nesting activity and breeding behavior during the seasonal window."
+    },
+    {
+      name: "California Gull Nest Surveys",
+      logo: "assets/CALIFORNIA_GULL_NEST_SURVEYS.png",
+      level: "Beginner",
+      summary: "Survey nest sites to track California gull activity during peak season."
+    },
+    {
+      name: "Avian Disease Prevention Program",
+      logo: "assets/AVIAN_DISEASE_PREVENTION_PROGRAM.png",
+      level: "Beginner",
+      summary: "Support survey work that helps spot risk factors early in bird colonies."
+    },
+    {
+      name: "Phalarope Surveys",
+      logo: "assets/PHALAROPE_SURVEYS.png",
+      level: "Intermediate",
+      summary: "Survey phalarope activity during the seasonal window when the birds are visible."
+    },
+    {
+      name: "Snowy Plover",
+      logo: "assets/SNOWY_PLOVER.png",
+      level: "Beginner",
+      summary: "Take part in habitat-focused work that keeps snowy plover areas open and usable."
+    }
   ];
 
-  const MONTH_LABELS = Object.fromEntries(
-    MONTHS.map((month) => [month, month.slice(0, 3)])
-  );
+  const grid = document.getElementById("opportunity-grid");
 
-  const EXPERIENCES = ["All levels", "Beginner", "Intermediate", "Advanced"];
-  const PROGRAMS = Array.isArray(window.SFBBO_PROGRAMS) ? window.SFBBO_PROGRAMS : [];
-
-  const ICONS = {
-    programs: `
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line>
-      </svg>
-    `,
-    months: `
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
-      </svg>
-    `,
-    categories: `
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line>
-      </svg>
-    `
-  };
-
-  const elements = {
-    heroStats: document.getElementById("hero-stats"),
-    monthFilter: document.getElementById("month-filter"),
-    experienceFilter: document.getElementById("experience-filter"),
-    resultsSummary: document.getElementById("results-summary"),
-    programList: document.getElementById("program-list"),
-    programDetail: document.getElementById("program-detail")
-  };
-
-  const state = {
-    month: "All months",
-    experience: "All levels",
-    selectedProgramId: PROGRAMS[0] ? PROGRAMS[0].id : null
-  };
-
-  function getActiveMonths(program) {
-    return MONTHS.filter((month) => program.schedule[month]);
-  }
-
-  function getFilteredPrograms() {
-    return PROGRAMS.filter((program) => {
-      const matchesMonth =
-        state.month === "All months" || Boolean(program.schedule[state.month]);
-      const matchesExperience =
-        state.experience === "All levels" || program.experience === state.experience;
-
-      return matchesMonth && matchesExperience;
-    }).sort((left, right) => {
-      const leftMonths = getActiveMonths(left);
-      const rightMonths = getActiveMonths(right);
-      const leftFirst = MONTHS.indexOf(leftMonths[0]);
-      const rightFirst = MONTHS.indexOf(rightMonths[0]);
-
-      if (leftFirst !== rightFirst) {
-        return leftFirst - rightFirst;
-      }
-
-      return left.name.localeCompare(right.name);
-    });
-  }
-
-  function ensureSelection(filteredPrograms) {
-    const selectedStillVisible = filteredPrograms.some(
-      (program) => program.id === state.selectedProgramId
-    );
-
-    if (!selectedStillVisible) {
-      state.selectedProgramId = filteredPrograms[0] ? filteredPrograms[0].id : null;
-    }
-  }
-
-  function renderFilterPills(container, values, currentValue, onChange) {
-    container.innerHTML = "";
-
-    values.forEach((value) => {
-      const button = document.createElement("button");
-      button.type = "button";
-      button.className = `pill-button${value === currentValue ? " is-active" : ""}`;
-      button.textContent = value;
-      button.setAttribute("aria-pressed", String(value === currentValue));
-      button.addEventListener("click", () => onChange(value));
-      container.appendChild(button);
-    });
-  }
-
-  function buildStat(icon, value, label) {
-    return `
-      <li class="hero-stat">
-        <span class="stat-icon" aria-hidden="true">${icon}</span>
-        <div>
-          <strong>${value}</strong>
-          <span>${label}</span>
+  function renderOpportunity(opportunity) {
+    const card = document.createElement("article");
+    card.className = "opportunity-card";
+    card.innerHTML = `
+      <div class="opportunity-logo">
+        <img src="${opportunity.logo}" alt="${opportunity.name} logo" />
+      </div>
+      <div class="card-top">
+        <h3 class="card-title">${opportunity.name}</h3>
+        <div class="card-meta">
+          <span class="tag">${opportunity.level}</span>
         </div>
-      </li>
+      </div>
+      <p class="card-copy">${opportunity.summary}</p>
     `;
-  }
 
-  function renderHeroStats() {
-    const monthsCovered = new Set();
-    const categories = new Set();
-
-    PROGRAMS.forEach((program) => {
-      categories.add(program.category);
-      getActiveMonths(program).forEach((month) => monthsCovered.add(month));
-    });
-
-    elements.heroStats.innerHTML = [
-      buildStat(ICONS.programs, String(PROGRAMS.length), "Programs"),
-      buildStat(ICONS.months, String(monthsCovered.size), "Months"),
-      buildStat(ICONS.categories, String(categories.size), "Categories")
-    ].join("");
-  }
-
-  function formatTiming(activeMonths) {
-    if (activeMonths.length === 12) {
-      return "Year-round";
-    }
-
-    if (activeMonths.length === 1) {
-      return activeMonths[0];
-    }
-
-    if (activeMonths.length <= 3) {
-      return activeMonths.map((month) => MONTH_LABELS[month]).join(", ");
-    }
-
-    return `${activeMonths
-      .slice(0, 3)
-      .map((month) => MONTH_LABELS[month])
-      .join(", ")} + ${activeMonths.length - 3}`;
-  }
-
-  function formatSummary(filteredPrograms) {
-    const count = filteredPrograms.length;
-    const noun = count === 1 ? "program" : "programs";
-
-    if (!count) {
-      return "No matches";
-    }
-
-    if (state.month === "All months" && state.experience === "All levels") {
-      return `${count} ${noun}`;
-    }
-
-    if (state.month !== "All months" && state.experience === "All levels") {
-      return `${count} ${noun} in ${state.month}`;
-    }
-
-    if (state.month === "All months" && state.experience !== "All levels") {
-      return `${count} ${noun} for ${state.experience.toLowerCase()} volunteers`;
-    }
-
-    return `${count} ${noun} in ${state.month}`;
-  }
-
-  function renderProgramList(filteredPrograms) {
-    elements.resultsSummary.textContent = formatSummary(filteredPrograms);
-
-    if (!filteredPrograms.length) {
-      elements.programList.innerHTML = `
-        <div class="empty-state">
-          <p class="eyebrow">No matches</p>
-          <h3 class="empty-state-title">Try a different filter</h3>
-          <p class="empty-state-copy">
-            This combination does not have a matching volunteer program.
-          </p>
-        </div>
-      `;
-      return;
-    }
-
-    elements.programList.innerHTML = "";
-
-    filteredPrograms.forEach((program) => {
-      const activeMonths = getActiveMonths(program);
-      const currentMonthStatus =
-        state.month === "All months" ? null : program.schedule[state.month];
-
-      const button = document.createElement("button");
-      button.type = "button";
-      button.className = `program-card${
-        state.selectedProgramId === program.id ? " is-selected" : ""
-      }`;
-      button.innerHTML = `
-        <div class="program-card-head">
-          <div>
-            <p class="eyebrow">${program.category}</p>
-            <h4 class="program-card-title">${program.name}</h4>
-          </div>
-          <span class="tag tag-accent">${program.experience}</span>
-        </div>
-        <p class="program-card-copy">${program.summary}</p>
-        <div class="program-card-foot">
-          <span>${formatTiming(activeMonths)}</span>
-          ${
-            currentMonthStatus && currentMonthStatus.status === "Full"
-              ? `<span class="status-chip status-full">Full</span>`
-              : currentMonthStatus
-                ? `<span class="tag tag-muted">Listed in ${state.month}</span>`
-                : ""
-          }
-        </div>
-      `;
-
-      button.addEventListener("click", () => {
-        state.selectedProgramId = program.id;
-        render();
-      });
-
-      elements.programList.appendChild(button);
-    });
-  }
-
-  function renderProgramDetail(filteredPrograms) {
-    if (!filteredPrograms.length) {
-      elements.programDetail.innerHTML = `
-        <div class="empty-state">
-          <p class="eyebrow">Selection</p>
-          <h3 class="empty-state-title">No program selected</h3>
-          <p class="empty-state-copy">
-            Choose a different month or experience level to see available listings.
-          </p>
-        </div>
-      `;
-      return;
-    }
-
-    const program =
-      filteredPrograms.find((entry) => entry.id === state.selectedProgramId) || filteredPrograms[0];
-    const activeMonths = getActiveMonths(program);
-    const currentMonthStatus =
-      state.month === "All months" ? null : program.schedule[state.month];
-
-    elements.programDetail.innerHTML = `
-      <div class="detail-brand">
-        <div class="detail-brand-logo-wrap" aria-hidden="true">
-          <img src="SFBBO_Logo_Rounded.png" alt="" class="detail-brand-logo" />
-        </div>
-        <div>
-          <p class="detail-brand-title">SFBBO</p>
-          <p class="detail-brand-copy">Volunteer program guide</p>
-        </div>
-      </div>
-
-      <div class="detail-top">
-        <div>
-          <p class="detail-kicker">Selected program</p>
-          <h3 class="detail-title" id="detail-heading">${program.name}</h3>
-        </div>
-        <div class="detail-badges">
-          <span class="tag tag-accent">${program.experience}</span>
-          <span class="tag tag-muted">${program.category}</span>
-          ${
-            currentMonthStatus && currentMonthStatus.status === "Full"
-              ? `<span class="status-chip status-full">Full in ${state.month}</span>`
-              : currentMonthStatus
-                ? `<span class="tag tag-muted">Listed in ${state.month}</span>`
-                : ""
-          }
-        </div>
-      </div>
-
-      <p class="detail-copy">${program.summary}</p>
-
-      <div class="detail-stat-list">
-        <div class="detail-stat">
-          <strong>Experience</strong>
-          <span>${program.experience}</span>
-        </div>
-        <div class="detail-stat">
-          <strong>Category</strong>
-          <span>${program.category}</span>
-        </div>
-        <div class="detail-stat">
-          <strong>Timing</strong>
-          <span>${formatTiming(activeMonths)}</span>
-        </div>
-      </div>
-
-      <div class="detail-section">
-        <p class="detail-section-title">Months</p>
-        <div class="month-chip-list">
-          ${activeMonths
-            .map((month) => {
-              const monthStatus = program.schedule[month];
-              const isFull = monthStatus.status === "Full";
-
-              return `
-                <div class="month-chip${isFull ? " has-status" : ""}">
-                  <strong>${MONTH_LABELS[month]}</strong>
-                  ${isFull ? "<span>Full</span>" : ""}
-                </div>
-              `;
-            })
-            .join("")}
-        </div>
-      </div>
-    `;
-  }
-
-  function render() {
-    const filteredPrograms = getFilteredPrograms();
-    ensureSelection(filteredPrograms);
-    renderProgramList(filteredPrograms);
-    renderProgramDetail(filteredPrograms);
-  }
-
-  function initializeFilters() {
-    renderFilterPills(
-      elements.monthFilter,
-      ["All months", ...MONTHS],
-      state.month,
-      (value) => {
-        state.month = value;
-        initializeFilters();
-        render();
-      }
-    );
-
-    renderFilterPills(
-      elements.experienceFilter,
-      EXPERIENCES,
-      state.experience,
-      (value) => {
-        state.experience = value;
-        initializeFilters();
-        render();
-      }
-    );
-  }
-
-  function registerServiceWorker() {
-    if (!("serviceWorker" in navigator) || window.location.protocol === "file:") {
-      return;
-    }
-
-    window.addEventListener("load", () => {
-      navigator.serviceWorker.register("./service-worker.js").catch(() => {
-        // Ignore registration failures in environments that do not support SW fully.
-      });
-    });
+    return card;
   }
 
   function init() {
-    if (!PROGRAMS.length) {
-      elements.programList.innerHTML = `
-        <div class="empty-state">
-          <p class="eyebrow">Data unavailable</p>
-          <h3 class="empty-state-title">No program data loaded</h3>
-          <p class="empty-state-copy">
-            The app expected the seed dataset to be available on <code>window.SFBBO_PROGRAMS</code>.
-          </p>
-        </div>
-      `;
+    if (!grid) {
       return;
     }
 
-    renderHeroStats();
-    initializeFilters();
-    render();
-    registerServiceWorker();
+    grid.innerHTML = "";
+    OPPORTUNITIES.forEach((opportunity) => {
+      grid.appendChild(renderOpportunity(opportunity));
+    });
   }
 
   init();

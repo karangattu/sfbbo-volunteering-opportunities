@@ -1,21 +1,17 @@
 :root {
-  --bg: #fafafa;
+  --bg: #f7f7f5;
   --surface: #ffffff;
-  --surface-muted: #f4f4f5;
-  --border: #e4e4e7;
-  --border-strong: #d4d4d8;
-  --text: #18181b;
-  --text-soft: #52525b;
+  --surface-muted: #f1f2ee;
+  --border: #e3e4de;
+  --text: #1b1f1d;
+  --text-soft: #5f6762;
   --accent: #0f766e;
-  --accent-strong: #115e59;
-  --accent-soft: #ccfbf1;
-  --warm-soft: #ffedd5;
-  --danger: #b91c1c;
-  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --radius-xl: 1rem;
-  --radius-lg: 0.75rem;
-  --radius-md: 0.5rem;
-  --radius-sm: 0.25rem;
+  --accent-soft: #d5f1ed;
+  --shadow: 0 12px 30px rgba(16, 24, 40, 0.08);
+  --radius-xl: 1.25rem;
+  --radius-lg: 1rem;
+  --radius-md: 0.75rem;
+  --radius-sm: 999px;
   --font-heading: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-body: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
@@ -38,546 +34,176 @@ body {
 }
 
 .page-shell {
-  width: min(1100px, calc(100% - 2rem));
+  width: min(1080px, calc(100% - 2rem));
   margin: 0 auto;
-  padding: 1.25rem 0 3rem;
+  padding: 1.25rem 0 2.5rem;
 }
 
 .hero,
-.explorer-section {
-  border: 1px solid var(--border);
+.catalog-section {
   background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow);
 }
 
 .hero {
   display: grid;
-  gap: 1.25rem;
-  padding: 2rem;
+  justify-items: center;
+  gap: 0.9rem;
+  padding: 2rem 1.5rem;
+  text-align: center;
 }
 
-.brand-row {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.brand-mark,
-.stat-icon,
-.label-icon,
-.footer-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.brand-mark {
-  width: 3.25rem;
-  height: 3.25rem;
-  flex-shrink: 0;
-  border-radius: var(--radius-md);
-  background: transparent;
-  box-shadow: var(--shadow);
-}
-
-.brand-mark-image,
-.footer-logo,
-.detail-brand-logo {
+.hero-logo {
+  width: min(180px, 40vw);
+  height: auto;
   display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  border-radius: inherit;
-}
-
-.brand-mark svg,
-.stat-icon svg,
-.label-icon svg,
-.footer-icon svg {
-  width: 1.2rem;
-  height: 1.2rem;
 }
 
 .eyebrow {
-  margin: 0 0 0.45rem;
+  margin: 0;
   color: var(--accent);
   font-size: 0.76rem;
   font-weight: 700;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
 }
 
 h1,
 h2,
-h3,
-h4 {
+h3 {
   margin: 0;
   font-family: var(--font-heading);
-  font-weight: 700;
-  line-height: 0.98;
+  line-height: 1.05;
 }
 
 h1 {
-  max-width: 11ch;
-  font-size: clamp(2.7rem, 5vw, 4.7rem);
+  font-size: clamp(2.4rem, 5vw, 4rem);
 }
 
 h2 {
-  font-size: clamp(1.85rem, 3vw, 2.7rem);
-}
-
-h3 {
-  font-size: 1.45rem;
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
 }
 
 p {
   margin: 0;
-  line-height: 1.6;
 }
 
 .hero-text,
 .section-heading p,
-.results-summary,
-.program-card-copy,
-.detail-copy,
-.empty-state-copy,
-.page-footer {
+.card-copy {
   color: var(--text-soft);
 }
 
 .hero-text {
-  max-width: 42rem;
+  max-width: 44rem;
   font-size: 1.02rem;
 }
 
-.hero-actions {
-  display: flex;
-  gap: 0.85rem;
-}
-
-.button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.85rem 1.15rem;
-  border-radius: var(--radius-sm);
-  border: 1px solid transparent;
-  font-weight: 700;
-  text-decoration: none;
-  transition: transform 180ms ease, box-shadow 180ms ease;
-}
-
-.button:hover,
-.button:focus-visible {
-  transform: translateY(-1px);
-}
-
-.button-primary {
-  color: #ffffff;
-  background: var(--accent);
-  box-shadow: var(--shadow);
-}
-
-.hero-stats {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.hero-stat {
-  flex: 1 1 170px;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.95rem 1rem;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border);
-  background: var(--surface-muted);
-}
-
-.stat-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  flex-shrink: 0;
-  border-radius: 50%;
-  background: var(--surface);
-  color: var(--accent);
-  border: 1px solid rgba(31, 92, 80, 0.14);
-}
-
-.hero-stat strong {
-  display: block;
-  font-family: var(--font-heading);
-  font-size: 1.7rem;
-  color: var(--accent-strong);
-}
-
-.hero-stat span {
-  display: block;
-  font-size: 0.92rem;
-  color: var(--text-soft);
-}
-
-main {
+.catalog-section {
   margin-top: 1rem;
-}
-
-.explorer-section {
   padding: 1.5rem;
 }
 
 .section-heading {
   display: grid;
-  gap: 0.45rem;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
 }
 
-.controls-panel {
+.opportunity-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
-  margin-top: 1.35rem;
+}
+
+.opportunity-card {
+  display: grid;
+  gap: 0.9rem;
   padding: 1rem;
   border-radius: var(--radius-lg);
-  background: var(--surface-muted);
   border: 1px solid var(--border);
+  background: #ffffff;
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease,
+    border-color 220ms ease;
 }
 
-.control-group {
+.opportunity-logo {
   display: grid;
-  gap: 0.65rem;
+  place-items: center;
+  aspect-ratio: 1 / 1;
+  padding: 0.9rem;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: transparent;
+  transition: transform 220ms ease;
 }
 
-.control-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: var(--text-soft);
+.opportunity-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  transition:
+    transform 220ms ease,
+    filter 220ms ease;
 }
 
-.label-icon {
-  color: var(--accent);
+.opportunity-card:hover,
+.opportunity-card:focus-within {
+  transform: translateY(-4px);
+  border-color: rgba(15, 118, 110, 0.24);
+  box-shadow: 0 18px 40px rgba(16, 24, 40, 0.12);
 }
 
-.pill-group {
+.opportunity-card:hover .opportunity-logo,
+.opportunity-card:focus-within .opportunity-logo {
+  transform: scale(1.02);
+}
+
+.opportunity-card:hover .opportunity-logo img,
+.opportunity-card:focus-within .opportunity-logo img {
+  transform: scale(1.08);
+  filter: saturate(1.05) contrast(1.03);
+}
+
+.card-top {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.card-title {
+  font-size: 1.2rem;
+}
+
+.card-meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.55rem;
+  gap: 0.45rem;
 }
 
-.pill-button,
-.tag,
-.status-chip,
-.month-chip {
+.tag {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.35rem;
-  padding: 0.55rem 0.82rem;
+  padding: 0.4rem 0.7rem;
   border-radius: var(--radius-sm);
-  border: 1px solid var(--border);
-  background: #ffffff;
-  color: var(--text);
-}
-
-.pill-button {
-  cursor: pointer;
-  font: inherit;
-  font-weight: 700;
-  transition:
-    background 180ms ease,
-    color 180ms ease,
-    border-color 180ms ease,
-    transform 180ms ease;
-}
-
-.pill-button:hover,
-.pill-button:focus-visible {
-  transform: translateY(-1px);
-  border-color: rgba(31, 92, 80, 0.26);
-}
-
-.pill-button.is-active {
-  border-color: transparent;
-  background: var(--accent-strong);
-  color: #fcf8f0;
-}
-
-.explorer-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
-  gap: 1rem;
-  margin-top: 1.4rem;
-}
-
-.results-panel,
-.detail-panel {
-  min-width: 0;
-}
-
-.results-header {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 1rem;
-  padding-bottom: 1rem;
-}
-
-.results-summary {
-  text-align: right;
-  font-weight: 700;
-}
-
-.program-list {
-  display: grid;
-  gap: 0.75rem;
-}
-
-.program-card {
-  width: 100%;
-  padding: 1rem 1.05rem;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border);
-  background: #fffdf9;
-  text-align: left;
-  cursor: pointer;
-  transition:
-    transform 180ms ease,
-    box-shadow 180ms ease,
-    border-color 180ms ease;
-}
-
-.program-card:hover,
-.program-card:focus-visible {
-  transform: translateY(-2px);
-  border-color: rgba(31, 92, 80, 0.26);
-  box-shadow: 0 12px 24px rgba(25, 48, 43, 0.08);
-}
-
-.program-card.is-selected {
-  border-color: rgba(31, 92, 80, 0.4);
-  box-shadow: 0 14px 28px rgba(25, 48, 43, 0.1);
-}
-
-.program-card-head,
-.detail-top {
-  display: flex;
-  align-items: start;
-  justify-content: space-between;
-  gap: 1rem;
-}
-
-.program-card-title {
-  font-size: 1.22rem;
-}
-
-.tag,
-.status-chip {
-  font-size: 0.82rem;
-  font-weight: 700;
-}
-
-.tag-accent {
   background: var(--accent-soft);
-  color: var(--accent-strong);
-  border-color: rgba(31, 92, 80, 0.12);
-}
-
-.tag-muted {
-  background: var(--surface-muted);
-  color: var(--text-soft);
-}
-
-.status-full,
-.month-chip.has-status {
-  background: var(--warm-soft);
-  color: var(--danger);
-  border-color: rgba(162, 71, 49, 0.18);
-}
-
-.program-card-copy {
-  margin-top: 0.7rem;
-}
-
-.program-card-foot {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  margin-top: 1rem;
-  font-size: 0.92rem;
-  color: var(--text-soft);
-}
-
-.program-detail {
-  position: sticky;
-  top: 1rem;
-  display: grid;
-  gap: 1rem;
-  padding: 1.2rem;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border);
-  background: var(--surface-muted);
-}
-
-.detail-brand {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.8rem;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border);
-  background: #ffffff;
-}
-
-.detail-brand-logo-wrap {
-  width: 3rem;
-  height: 3rem;
-  flex-shrink: 0;
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  background: #ffffff;
-}
-
-.detail-brand-title {
-  font-size: 0.76rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
   color: var(--accent);
-}
-
-.detail-brand-copy {
-  font-size: 0.96rem;
-  font-weight: 700;
-  color: var(--text);
-}
-
-.detail-kicker,
-.detail-section-title {
   font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--accent);
 }
 
-.detail-title {
-  font-size: 2rem;
-  max-width: 13ch;
-}
-
-.detail-copy {
-  margin-top: 0.15rem;
-}
-
-.detail-badges,
-.month-chip-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.55rem;
-}
-
-.detail-stat-list {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.75rem;
-}
-
-.detail-stat {
-  padding: 0.9rem;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border);
-  background: #fffdf9;
-}
-
-.detail-stat strong {
-  display: block;
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-soft);
-}
-
-.detail-stat span {
-  display: block;
-  margin-top: 0.35rem;
-  font-weight: 700;
-}
-
-.detail-section {
-  display: grid;
-  gap: 0.7rem;
-}
-
-.month-chip {
-  min-width: 4.75rem;
-  flex-direction: column;
-  align-items: start;
-  padding: 0.7rem 0.82rem;
-  border-radius: 16px;
-  background: #fffdf9;
-}
-
-.month-chip strong {
-  font-size: 0.88rem;
-}
-
-.month-chip span {
-  font-size: 0.76rem;
-}
-
-.empty-state {
-  padding: 1.2rem;
-  border-radius: var(--radius-lg);
-  border: 1px dashed var(--border-strong);
-  background: #fffcf6;
-}
-
-.empty-state-title {
-  font-size: 1.3rem;
-}
-
-.page-footer {
-  margin-top: 1rem;
-  padding: 0 0.25rem;
-  font-size: 0.92rem;
-}
-
-.page-footer p {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-}
-
-.footer-icon {
-  width: 2rem;
-  height: 2rem;
-  flex-shrink: 0;
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  border: 1px solid var(--border);
-  background: #ffffff;
-  color: var(--accent);
+.card-copy {
+  font-size: 0.95rem;
 }
 
 @media (max-width: 960px) {
-  .controls-panel,
-  .explorer-layout,
-  .detail-stat-list {
-    grid-template-columns: 1fr;
-  }
-
-  .program-detail {
-    position: static;
+  .opportunity-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -588,35 +214,111 @@ main {
   }
 
   .hero,
-  .explorer-section {
-    padding: 1.2rem;
+  .catalog-section {
+    border-radius: 0.9rem;
   }
 
-  .brand-row,
-  .results-header,
-  .program-card-head,
-  .program-card-foot,
-  .detail-top {
-    align-items: start;
-    flex-direction: column;
+  .hero,
+  .catalog-section {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 
-  .hero-stats {
-    display: grid;
+  .opportunity-grid {
     grid-template-columns: 1fr;
   }
-
-  .results-summary {
-    text-align: left;
-  }
-
-  .pill-group {
-    overflow-x: auto;
-    flex-wrap: nowrap;
-    padding-bottom: 0.2rem;
-  }
-
-  .pill-button {
-    white-space: nowrap;
-  }
 }
+*** Update File: /Users/karangathani/Documents/GitHub/sfbbo-volunteering-opportunities/app.js
+@@
+(function () {
+  const OPPORTUNITIES = [
+    {
+      name: "Colonial Waterbird Nest Monitoring",
+      logo: "assets/COLONIAL_WATERBIRD_NEST_MONITORING.png",
+      level: "Intermediate",
+      summary: "Support repeated nest checks and colony observations for local waterbirds."
+    },
+    {
+      name: "Bird Banding",
+      logo: "assets/BIRD_BANDING.png",
+      level: "Advanced",
+      summary: "Assist with banding operations and the careful handling of field data."
+    },
+    {
+      name: "Outreach",
+      logo: "assets/OUTREACH.png",
+      level: "Beginner",
+      summary: "Represent SFBBO at events, answer questions, and connect people to the mission."
+    },
+    {
+      name: "Habitat Restoration",
+      logo: "assets/HABITAT_RESTORATION.png",
+      level: "Beginner",
+      summary: "Join hands-on restoration work that improves habitat for birds and shoreline wildlife."
+    },
+    {
+      name: "Least Tern Monitoring",
+      logo: "assets/LEAST_TERN_MONITORING.png",
+      level: "Advanced",
+      summary: "Help document nesting activity and breeding behavior during the seasonal window."
+    },
+    {
+      name: "California Gull Nest Surveys",
+      logo: "assets/CALIFORNIA_GULL_NEST_SURVEYS.png",
+      level: "Intermediate",
+      summary: "Survey nest sites to track California gull activity during peak season."
+    },
+    {
+      name: "Avian Disease Prevention Program",
+      logo: "assets/AVIAN_DISEASE_PREVENTION_PROGRAM.png",
+      level: "Advanced",
+      summary: "Support survey work that helps spot risk factors early in bird colonies."
+    },
+    {
+      name: "Phalarope Surveys",
+      logo: "assets/PHALAROPE_SURVEYS.png",
+      level: "Advanced",
+      summary: "Survey phalarope activity during the seasonal window when the birds are visible."
+    },
+    {
+      name: "Snowy Plover",
+      logo: "assets/SNOWY_PLOVER.png",
+      level: "Beginner",
+      summary: "Take part in habitat-focused work that keeps snowy plover areas open and usable."
+    }
+  ];
+
+  const grid = document.getElementById("opportunity-grid");
+
+  function renderOpportunity(opportunity) {
+    const card = document.createElement("article");
+    card.className = "opportunity-card";
+    card.innerHTML = `
+      <div class="opportunity-logo">
+        <img src="${opportunity.logo}" alt="${opportunity.name} logo" />
+      </div>
+      <div class="card-top">
+        <h3 class="card-title">${opportunity.name}</h3>
+        <div class="card-meta">
+          <span class="tag">${opportunity.level}</span>
+        </div>
+      </div>
+      <p class="card-copy">${opportunity.summary}</p>
+    `;
+
+    return card;
+  }
+
+  function init() {
+    if (!grid) {
+      return;
+    }
+
+    grid.innerHTML = "";
+    OPPORTUNITIES.forEach((opportunity) => {
+      grid.appendChild(renderOpportunity(opportunity));
+    });
+  }
+
+  init();
+})();
