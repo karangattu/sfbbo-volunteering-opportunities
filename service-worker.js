@@ -1,4 +1,4 @@
-const CACHE_NAME = "sfbbo-volunteer-explorer-v8";
+const CACHE_NAME = "sfbbo-volunteer-explorer-v9";
 const BASE_PATH = self.location.pathname.replace(/service-worker\.js$/, "");
 const PROGRAM_SLUGS = [
   "colonial-waterbird-nest-monitoring",
@@ -28,6 +28,8 @@ const CORE_ASSETS = [
   `${BASE_PATH}app.js`,
   `${BASE_PATH}favicon.svg`,
   `${BASE_PATH}SFBBO_Logo_Rounded.png`,
+  `${BASE_PATH}icon-192.png`,
+  `${BASE_PATH}icon-512.png`,
   `${BASE_PATH}site.webmanifest`,
   ...PROGRAM_PAGES.map((page) => `${BASE_PATH}${page}`),
   ...PROGRAM_ASSETS
