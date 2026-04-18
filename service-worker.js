@@ -1,16 +1,24 @@
-const CACHE_NAME = "sfbbo-volunteer-explorer-v6";
+const CACHE_NAME = "sfbbo-volunteer-explorer-v8";
 const BASE_PATH = self.location.pathname.replace(/service-worker\.js$/, "");
-const PROGRAM_PAGES = [
-  "colonial-waterbird-nest-monitoring.html",
-  "bird-banding.html",
-  "outreach.html",
-  "habitat-restoration.html",
-  "least-tern-monitoring.html",
-  "california-gull-nest-surveys.html",
-  "avian-disease-prevention-program.html",
-  "phalarope-surveys.html",
-  "snowy-plover.html"
+const PROGRAM_SLUGS = [
+  "colonial-waterbird-nest-monitoring",
+  "bird-banding",
+  "outreach",
+  "habitat-restoration",
+  "least-tern-monitoring",
+  "california-gull-nest-surveys",
+  "avian-disease-prevention-program",
+  "phalarope-surveys",
+  "snowy-plover"
 ];
+const PROGRAM_PAGES = PROGRAM_SLUGS.map((slug) => `${slug}.html`);
+const PROGRAM_ASSET_STEMS = PROGRAM_SLUGS.map((slug) => slug.toUpperCase().replace(/-/g, "_"));
+const PROGRAM_ASSETS = PROGRAM_ASSET_STEMS.flatMap((stem) => [
+  `${BASE_PATH}assets/${stem}.png`,
+  `${BASE_PATH}assets/${stem}_WHAT.png`,
+  `${BASE_PATH}assets/${stem}_HOW.png`,
+  `${BASE_PATH}assets/${stem}_WHEN.png`
+]);
 const CORE_ASSETS = [
   BASE_PATH,
   `${BASE_PATH}index.html`,
@@ -22,15 +30,7 @@ const CORE_ASSETS = [
   `${BASE_PATH}SFBBO_Logo_Rounded.png`,
   `${BASE_PATH}site.webmanifest`,
   ...PROGRAM_PAGES.map((page) => `${BASE_PATH}${page}`),
-  `${BASE_PATH}assets/AVIAN_DISEASE_PREVENTION_PROGRAM.png`,
-  `${BASE_PATH}assets/BIRD_BANDING.png`,
-  `${BASE_PATH}assets/CALIFORNIA_GULL_NEST_SURVEYS.png`,
-  `${BASE_PATH}assets/COLONIAL_WATERBIRD_NEST_MONITORING.png`,
-  `${BASE_PATH}assets/HABITAT_RESTORATION.png`,
-  `${BASE_PATH}assets/LEAST_TERN_MONITORING.png`,
-  `${BASE_PATH}assets/OUTREACH.png`,
-  `${BASE_PATH}assets/PHALAROPE_SURVEYS.png`,
-  `${BASE_PATH}assets/SNOWY_PLOVER.png`
+  ...PROGRAM_ASSETS
 ];
 
 self.addEventListener("install", (event) => {
