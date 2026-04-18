@@ -11,11 +11,6 @@
     when: "When"
   };
 
-  const TRAINING_BY_LEVEL = {
-    Beginner: "You’ll get a short orientation and safety overview before your first outing.",
-    Intermediate: "Training covers the site protocol, field safety, and note-taking before you join the team.",
-    Advanced: "Expect role-specific training and a protocol review before field work begins."
-  };
 
   function setMetaDescription(summary) {
     const meta = document.querySelector('meta[name="description"]');
@@ -30,10 +25,6 @@
 
   function getSectionImagePath(slug, section) {
     return `assets/${toAssetStem(slug)}_${SECTION_IMAGE_SUFFIXES[section]}.png`;
-  }
-
-  function getTrainingText(level) {
-    return TRAINING_BY_LEVEL[level] || TRAINING_BY_LEVEL.Beginner;
   }
 
   function ensureImageDialog() {
@@ -143,11 +134,12 @@
     return block;
   }
 
-  function renderWhenSection(container, level, timelineText) {
+  function renderWhenSection(container, trainingText, timelineText) {
     if (!container) {
       return;
     }
 
+    const training = trainingText || "You'll get a short orientation before your first outing.";
     const timeline = timelineText || "Dates are posted when the team schedules them.";
 
     let target = container;
@@ -162,7 +154,7 @@
 
     target.innerHTML = '';
     target.append(
-      createWhenBlock('Training', getTrainingText(level)),
+      createWhenBlock('Training', training),
       createWhenBlock('Timeline', timeline)
     );
   }
@@ -254,7 +246,7 @@
       renderList(howElement, detail.how);
     }
 
-    renderWhenSection(whenElement, program.level, detail.when);
+    renderWhenSection(whenElement, detail.training, detail.when);
   }
 
   init();
