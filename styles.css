@@ -118,6 +118,12 @@ p {
   margin-bottom: 1rem;
 }
 
+.section-subtitle {
+  font-size: 0.92rem;
+  color: var(--text-soft);
+  opacity: 0.75;
+}
+
 .opportunity-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
