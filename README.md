@@ -1,11 +1,12 @@
 # sfbbo-volunteering-opportunities
 
-A simple static site that shows the SFBBO logo and a clean catalog of volunteering opportunities from the images in `assets/`.
+A simple static site that shows the SFBBO logo, a clean catalog of volunteering opportunities from the images in `assets/`, and one detail page per program.
 
 ## What it does
 
 - Shows the SFBBO logo up top.
 - Displays each volunteering opportunity as a simple card with its logo and a short summary.
+- Opens a dedicated page for each program with What, How, and When sections.
 - Stays static and offline-friendly for GitHub Pages.
 
 ## Files
@@ -13,6 +14,9 @@ A simple static site that shows the SFBBO logo and a clean catalog of volunteeri
 - `index.html`: main app entry point.
 - `styles.css`: minimal layout and visual styling.
 - `app.js`: renders the opportunity cards.
+- `program-data.js`: shared data for the catalog and program pages.
+- `program-page.js`: renders the program detail pages.
+- `*.html`: dedicated pages for each volunteer program.
 - `service-worker.js`: offline cache for the app shell and logo assets.
 - `site.webmanifest`: metadata for installable/offline-friendly browsers.
 - `favicon.svg`: site icon.
