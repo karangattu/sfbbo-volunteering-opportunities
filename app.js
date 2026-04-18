@@ -20,6 +20,12 @@
       <p class="card-copy">${opportunity.summary}</p>
     `;
 
+    card.addEventListener("click", () => {
+      if (navigator.vibrate) {
+        navigator.vibrate(30);
+      }
+    });
+
     return card;
   }
 
