@@ -253,6 +253,16 @@
       state.month === "All months" ? null : program.schedule[state.month];
 
     elements.programDetail.innerHTML = `
+      <div class="detail-brand">
+        <div class="detail-brand-logo-wrap" aria-hidden="true">
+          <img src="SFBBO_Logo_Rounded.png" alt="" class="detail-brand-logo" />
+        </div>
+        <div>
+          <p class="detail-brand-title">SFBBO</p>
+          <p class="detail-brand-copy">Volunteer program guide</p>
+        </div>
+      </div>
+
       <div class="detail-top">
         <div>
           <p class="detail-kicker">Selected program</p>

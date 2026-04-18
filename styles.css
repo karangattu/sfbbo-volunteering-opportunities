@@ -81,6 +81,16 @@ body {
   box-shadow: var(--shadow);
 }
 
+.brand-mark-image,
+.footer-logo,
+.detail-brand-logo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: inherit;
+}
+
 .brand-mark svg,
 .stat-icon svg,
 .label-icon svg,
@@ -418,6 +428,39 @@ main {
   background: var(--surface-muted);
 }
 
+.detail-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.8rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: #ffffff;
+}
+
+.detail-brand-logo-wrap {
+  width: 3rem;
+  height: 3rem;
+  flex-shrink: 0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.detail-brand-title {
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.detail-brand-copy {
+  font-size: 0.96rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
 .detail-kicker,
 .detail-section-title {
   font-size: 0.78rem;
@@ -516,6 +559,13 @@ main {
 }
 
 .footer-icon {
+  width: 2rem;
+  height: 2rem;
+  flex-shrink: 0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #ffffff;
   color: var(--accent);
 }
 
