@@ -76,10 +76,10 @@ body {
   width: 3.25rem;
   height: 3.25rem;
   flex-shrink: 0;
-  border-radius: 18px;
-  background: linear-gradient(180deg, var(--accent) 0%, var(--accent-strong) 100%);
-  color: #fffdf9;
-  box-shadow: 0 14px 30px rgba(21, 70, 61, 0.18);
+  border-radius: var(--radius-md);
+  background: var(--accent);
+  color: #ffffff;
+  box-shadow: var(--shadow);
 }
 
 .brand-mark svg,
@@ -165,9 +165,9 @@ p {
 }
 
 .button-primary {
-  color: #fcf8f0;
-  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
-  box-shadow: 0 12px 24px rgba(21, 70, 61, 0.16);
+  color: #ffffff;
+  background: var(--accent);
+  box-shadow: var(--shadow);
 }
 
 .hero-stats {
