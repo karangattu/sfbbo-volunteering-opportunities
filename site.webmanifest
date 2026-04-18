@@ -1,0 +1,17 @@
+{
+  "name": "SFBBO Volunteer Opportunities",
+  "short_name": "SFBBO Volunteers",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f6f3ed",
+  "theme_color": "#1f5c50",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
