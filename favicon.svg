@@ -1,5 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
-  <rect width="64" height="64" rx="16" fill="#1f5c50" />
-  <path d="M18 42c9-1 15-9 15-20 8 4 13 12 13 20 0 8-5 14-14 14-7 0-12-4-14-14Z" fill="#fffaf1" />
-  <circle cx="40" cy="24" r="2.6" fill="#1f5c50" />
+  <rect width="64" height="64" rx="16" fill="#1f5c50"/>
+  <!-- Left barrel -->
+  <ellipse cx="18" cy="34" rx="9" ry="13" fill="#fffaf1"/>
+  <!-- Right barrel -->
+  <ellipse cx="46" cy="34" rx="9" ry="13" fill="#fffaf1"/>
+  <!-- Bridge -->
+  <rect x="24" y="22" width="16" height="8" rx="4" fill="#fffaf1"/>
+  <!-- Left lens -->
+  <circle cx="18" cy="40" r="5" fill="#1f5c50"/>
+  <!-- Right lens -->
+  <circle cx="46" cy="40" r="5" fill="#1f5c50"/>
 </svg>
