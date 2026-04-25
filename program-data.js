@@ -10,7 +10,7 @@ window.SFBBO_PROGRAMS = [
     slug: "bird-banding",
     name: "Bird Banding",
     logo: "assets/BIRD_BANDING.png",
-    level: "Intermediate",
+    level: "Advanced",
     summary: "Assist with banding operations and the careful handling of field data."
   },
   {
