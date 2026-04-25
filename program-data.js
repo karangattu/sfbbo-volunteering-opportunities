@@ -154,7 +154,7 @@ window.SFBBO_PROGRAM_DETAILS = {
       "Help capture distressed birds using specialized equipment like towels and transport them.",
       "Assist in the removal of carcasses from the water to eliminate the source of the Clostridium botulinum toxin."
     ],
-    when: "Applications open in June. Season runs through June through November."
+    when: "Applications open in June. Season runs June through November."
   },
   "phalarope-surveys": {
     title: "Phalarope Surveys",
