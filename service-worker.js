@@ -1,4 +1,4 @@
-const CACHE_NAME = "sfbbo-volunteer-explorer-v18";
+const CACHE_NAME = "sfbbo-volunteer-explorer-v19";
 const BASE_PATH = self.location.pathname.replace(/service-worker\.js$/, "");
 const PROGRAM_SLUGS = [
   "colonial-waterbird-nest-monitoring",
